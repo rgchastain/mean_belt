@@ -1,0 +1,29 @@
+<table>
+	<h1>Doctor's Appointments</h1>
+	<form #formData='ngForm'>
+  	<input 
+	  	type='text'
+	  	name='search'
+	  	required
+	  	placeholder='Search'
+	  	[(ngModel)]='searchquery'
+	  	(input)="search(formData)"
+  	>
+  	</form>
+	<tr>
+		<th>Date</th>
+		<th>Time</th>
+		<th>Patient Name</th>
+		<th>Complain</th>
+	</tr>
+	<tr *ngFor="let appointment of appointments">
+		<td>{{appointment.date | date:'longDate'}}</td>
+		<td>{{appointment.time}}</td>
+		<td>{{appointment.user.name}}</td>
+		<td>
+			{{appointment.complaint}}
+			<button *ngIf="user==currentUser">Cancel</button>
+		</td>
+	</tr>
+</table>
+<p><button [routerLink]="['/dashboard', 'new']">Add New Appointment</button></p>

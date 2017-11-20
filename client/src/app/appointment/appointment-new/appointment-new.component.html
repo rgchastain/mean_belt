@@ -1,0 +1,67 @@
+<div class="app-div">
+	<h2>New Appointment</h2>
+	<form (submit)="onSubmit(); createAppointment.resetForm()" #createAppointment="ngForm">
+		<p>
+		<small [hidden]="complaint.valid || (complaint.untouched && !createAppointment.submitted)">
+			*Complain is required and must be at least 10 characters.
+		</small>
+		<small
+			[hidden]="date.valid || (date.untouched && !createAppointment.submitted)">
+			*Date is required and must be future dated.
+		</small>
+		</p>
+		
+		<p>
+			<label>Date: </label>
+			<input 
+				type="date"
+				name="date"
+				required
+				
+				[(ngModel)]="appointment.date"
+				#date="ngModel"
+			>
+			<label>Time: </label>
+			<input
+				type="text"
+				name="time"
+				required
+				[(ngModel)]="appointment.time"
+				#time="ngModel"
+			>
+			<!-- <select
+				type="option"
+				name="time"
+				required
+				[(ngModel)]="appointment.time"
+				#time="ngModel"
+			>
+				<option value="8:00 AM">8:00 AM</option>
+				<option value="8:00 AM">9:00 AM</option>
+				<option value="8:00 AM">10:00 AM</option>
+				<option value="8:00 AM">11:00 AM</option>
+				<option value="8:00 AM">12:00 PM</option>
+				<option value="8:00 AM">1:00 PM</option>
+				<option value="8:00 AM">2:00 PM</option>
+				<option value="8:00 AM">3:00 PM</option>
+				<option value="8:00 AM">4:00 PM</option>
+				<option value="8:00 AM">5:00 PM</option>
+			</select> -->
+		</p>
+		<p> Complain
+		<textarea 
+			type="text" 
+			name="complaint"
+			required
+			minlength="10"
+			[(ngModel)]="appointment.complaint"
+			#complaint="ngModel" 
+		></textarea>
+		</p>
+		
+
+		<button type="submit" [disabled]="!createAppointment.valid">Add Appointment</button>
+		
+	</form>
+	<p><button onclick="history.back()">Cancel</button> 
+</div>
